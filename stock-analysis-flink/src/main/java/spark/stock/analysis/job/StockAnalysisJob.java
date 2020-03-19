@@ -8,13 +8,13 @@ import org.slf4j.LoggerFactory;
 import spark.stock.analysis.stream.RabbitMqStreamConnector;
 
 /**
- * @ClassName OrderJob
+ * @ClassName StockAnalysisJob
  * @Description TODO
  * @Author Spark
- * @Date 3/17/2020 8:42 PM
+ * @Date 3/19/2020 11:58 AM
  **/
-public class OrderJob {
-    private final static Logger LOGGER = LoggerFactory.getLogger(OrderJob.class);
+public class StockAnalysisJob {
+    private final static Logger LOGGER = LoggerFactory.getLogger(StockAnalysisJob.class);
 
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -26,6 +26,6 @@ public class OrderJob {
                 return null;
             }
         });
-        env.execute("OrderJob");
+        env.execute("StockAnalysisJob");
     }
 }
