@@ -23,6 +23,6 @@ public class SendMessage {
 
     public void send(String message){
         LOGGER.info("Send message to rabbitmq:{}",message);
-        this.rabbitTemplate.convertAndSend("flink-rabbitmq",message);
+        this.rabbitTemplate.convertAndSend("rabbitmq-flink",message);
     }
 }

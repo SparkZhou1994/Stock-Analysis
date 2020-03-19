@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Configuration;
  * @Date 3/17/2020 2:45 PM
  **/
 @Configuration
-public class RabbitMqConfig {
+public class RabbitMQConfig {
 
     @Bean
     public Queue rabbitMQ() {
-        return new Queue("flink-rabbitmq");
+        return new Queue("rabbitmq-flink");
     }
 }
