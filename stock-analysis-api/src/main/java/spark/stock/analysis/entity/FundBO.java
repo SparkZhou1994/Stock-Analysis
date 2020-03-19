@@ -2,6 +2,7 @@ package spark.stock.analysis.entity;
 
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,8 +22,8 @@ public class FundBO {
     private Long soldFee;
     private Long price;
     private Long translate;
-    private List<TranslateBO> translateRecode; //涨跌幅
-    private List<StockBO> hasStocks; //持有股票
-    private List<PriceBO> priceHistory; //价格历史记录
+    private Date recodeTime;
+    private String recodeTimeString;
+    private List<StockBO> hasStock;
 
 }
