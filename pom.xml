@@ -12,6 +12,7 @@
     <module>stock-analysis-api</module>
     <module>stock-analysis-springboot</module>
     <module>stock-analysis-flink</module>
+      <module>stock-analysis-learn</module>
   </modules>
   <name>stock-analysis</name>
   <!-- FIXME change it to the project's website -->

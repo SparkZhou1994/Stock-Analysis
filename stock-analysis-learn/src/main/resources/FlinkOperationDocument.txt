@@ -1,0 +1,52 @@
+cd conf
+
+vi flink-conf.yaml
+jobmanager.rpc.address: hadoop101
+taskmanager.numberOfTaskSlots: 3
+--------------HA-----------------------
+high-availability: zookeeper
+high-availability.storageDir: hdfs://hadoop101:9000/ha/flink
+high-availability.zookeeper.quorum: hadoop101:2181,hadoop102:2181,hadoop103:2181
+
+vi slaves
+hadoop101
+hadoop102
+hadoop103
+
+vi masters(可配可不配)
+hadoop101:8081
+
+=========yarn-session===================
+yarn-session.sh -n 3 -s 3 -nm WordCountStreamJob -d
+-n taskManager个数
+-s  solt个数
+-nm 名字
+-d 守护进程
+
+=========CLI提交作业(yarn-session)=======
+cd bin
+./flink run -c spark.stock.analysis.WordCountStreamJob /home/hadoop0/stock-analysis-learn-1.0-SNAPSHOT.jar -d
+
+==================flink管理页面===========
+http://192.168.4.128:8081
+
+==================yarn管理页面===========
+http://192.168.4.128:8088
+
+==================hdfs管理页面===========
+http://192.168.4.128:50070
+
+==================yarn提示作业============
+yarn application -kill application_id
+
+===========Pre-Job-Cluster================
+cd bin
+./flink run -m yarn-cluster -yn 3 -ys -3 -ynm WordCountStreamJob -c spark.stock.analysis.WordCountStreamJob /home/hadoop0/stock-analysis-learn-1.0-SNAPSHOT.jar
+
+===========修改yarn重试次数================
+vi yarn-site.xml
+
+<property>
+    <name>yarn.resourcemanager.am.max-attempts</name>
+    <value>4</value>
+</property>
