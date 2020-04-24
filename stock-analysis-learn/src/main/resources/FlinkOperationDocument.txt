@@ -7,6 +7,13 @@ taskmanager.numberOfTaskSlots: 3
 high-availability: zookeeper
 high-availability.storageDir: hdfs://hadoop101:9000/ha/flink
 high-availability.zookeeper.quorum: hadoop101:2181,hadoop102:2181,hadoop103:2181
+--------------checkpoint--------------------------
+state.backend:rocksdb
+state.checkpoints.dir: hdfs://hadoop101:9000/checkpoint
+state.checkpoints.num-retained:2
+--------------savepoint---------------------------
+state.savepoint.dir : hdfs://hadoop101:9000/savepoint
+
 
 vi slaves
 hadoop101

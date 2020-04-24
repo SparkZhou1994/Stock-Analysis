@@ -18,7 +18,15 @@ object KeyStateJob {
     // 第一种方法
     /*dataStream.keyBy(_.callOut).flatMap(new CallIntervalFunction).print()*/
     // 第二种方法
-    dataStream.keyBy(_.callOut).mapWithState()
+    dataStream.keyBy(_.callOut).mapWithState[(String,Long), StationLog]{
+      case (in: StationLog, None) => ((in.callOut, 0) , Some(in))
+      case (in: StationLog, pre: Some[StationLog]) => {
+        var interval = Math.abs(in.callTime - pre.get.callTime)
+        ((in.callOut, interval), Some(in))
+      }
+    }
+      .filter(_._2 != 0)
+      .print()
     streamExecutionEnvironment.execute("KeyStateJob")
   }
 
