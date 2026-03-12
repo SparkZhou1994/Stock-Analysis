@@ -6,6 +6,9 @@ import com.spark.stockdashboard.entity.dashboard.HistoricalDataBO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Recover;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -36,8 +39,8 @@ public class EastMoneyApiClient {
     @Value("${eastmoney.api.retry-count:3}")
     private int retryCount;
 
-    public EastMoneyApiClient() {
-        this.restTemplate = new RestTemplate();
+    public EastMoneyApiClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
     /**
@@ -45,6 +48,20 @@ public class EastMoneyApiClient {
      * @param stockCode 股票代码（带市场前缀，如：sh600000, sz000001）
      * @return 股票实时数据
      */
+    @Retryable(
+            value = {
+                    org.springframework.web.client.ResourceAccessException.class,
+                    java.net.SocketTimeoutException.class,
+                    java.net.ConnectException.class,
+                    org.springframework.web.client.HttpServerErrorException.class
+            },
+            maxAttemptsExpression = "${eastmoney.api.retry.max-attempts:3}",
+            backoff = @Backoff(
+                    delayExpression = "${eastmoney.api.retry.backoff-delay:1000}",
+                    multiplierExpression = "${eastmoney.api.retry.backoff-multiplier:2.0}",
+                    maxDelayExpression = "${eastmoney.api.retry.max-backoff-delay:10000}"
+            )
+    )
     public StockDashboardBO fetchStockRealtimeData(String stockCode) {
         try {
             log.debug("开始获取股票实时数据，股票代码：{}", stockCode);
