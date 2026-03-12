@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股票实时数据 WebSocket 测试客户端</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .panel h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+            font-weight: 600;
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        select, input, button {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(102, 126, 234, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            background: #dc3545;
+        }
+
+        .status-indicator.connected {
+            background: #28a745;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .message-log {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .message-item {
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            border-left: 4px solid #6c757d;
+            background: #f8f9fa;
+            word-break: break-all;
+        }
+
+        .message-item.system {
+            border-left-color: #17a2b8;
+            background: #e3f2fd;
+        }
+
+        .message-item.received {
+            border-left-color: #28a745;
+            background: #f0fff4;
+        }
+
+        .message-item.sent {
+            border-left-color: #007bff;
+            background: #f0f8ff;
+        }
+
+        .message-item.error {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .timestamp {
+            color: #6c757d;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stock-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stock-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stock-card .code {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .stock-card .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .stock-card .change {
+            font-size: 0.9rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .change.positive {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .change.negative {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 0.9rem;
+            border-top: 1px solid #e9ecef;
+            background: #f8f9fa;
+        }
+
+        .clear-btn {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+
+        .clear-btn:hover {
+            background: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📈 股票实时数据 WebSocket 测试客户端</h1>
+            <p class="subtitle">连接Spring Boot WebSocket服务，实时接收股票和基金价格数据</p>
+        </header>
+
+        <div class="main-content">
+            <!-- 左侧控制面板 -->
+            <div class="panel">
+                <h2>连接控制</h2>
+
+                <div class="control-group">
+                    <label>WebSocket端点</label>
+                    <select id="endpointSelect">
+                        <option value="ws://localhost:8080/ws">ws://localhost:8080/ws (SockJS)</option>
+                        <option value="ws://localhost:8080/ws-native">ws://localhost:8080/ws-native (原生)</option>
+                        <option value="ws://localhost:8080/ws-handler">ws://localhost:8080/ws-handler (处理器)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>连接状态</label>
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <span id="statusIndicator" class="status-indicator"></span>
+                        <span id="statusText">未连接</span>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button id="connectBtn" onclick="connectWebSocket()">连接</button>
+                    <button id="disconnectBtn" onclick="disconnectWebSocket()" disabled>断开</button>
+                </div>
+
+                <h2 style="margin-top: 30px;">订阅管理</h2>
+
+                <div class="control-group">
+                    <label>证券类型</label>
+                    <select id="securityType">
+                        <option value="STOCK">股票</option>
+                        <option value="FUND">基金</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>证券代码</label>
+                    <input type="text" id="securityCode" placeholder="例如: 000001" value="000001">
+                </div>
+
+                <div class="btn-group">
+                    <button id="subscribeBtn" onclick="subscribe()" disabled>订阅</button>
+                    <button id="unsubscribeBtn" onclick="unsubscribe()" disabled>取消订阅</button>
+                </div>
+
+                <div class="stats" style="margin-top: 30px;">
+                    <div class="stat-item">
+                        <div class="stat-label">活跃连接</div>
+                        <div id="activeConnections" class="stat-value">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">消息接收</div>
+                        <div id="messageCount" class="stat-value">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">订阅数量</div>
+                        <div id="subscriptionCount" class="stat-value">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧消息面板 -->
+            <div class="panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin: 0;">消息日志</h2>
+                    <button class="clear-btn" onclick="clearLog()">清空日志</button>
+                </div>
+
+                <div id="messageLog" class="message-log">
+                    <div class="message-item system">
+                        <span class="timestamp" id="currentTime"></span>
+                        WebSocket测试客户端已就绪
+                    </div>
+                    <div class="message-item system">
+                        <span class="timestamp" id="currentTime2"></span>
+                        请先连接WebSocket服务器
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 30px;">实时数据展示</h2>
+                <div id="stockGrid" class="stock-grid">
+                    <!-- 股票卡片将通过JavaScript动态生成 -->
+                </div>
+
+                <div style="margin-top: 20px; text-align: center;">
+                    <button onclick="testHeartbeat()" style="width: auto; padding: 10px 20px;">测试心跳</button>
+                    <button onclick="testManualPush()" style="width: auto; padding: 10px 20px; margin-left: 10px;">测试手动推送</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>股票实时数据 WebSocket 测试客户端 | Spring Boot 4.0.3 | 技术支持</p>
+            <p>使用说明：1. 选择端点 2. 点击连接 3. 订阅证券 4. 查看实时数据</p>
+        </footer>
+    </div>
+
+    <script>
+        // 全局变量
+        let websocket = null;
+        let isConnected = false;
+        let messageCount = 0;
+        let subscriptions = new Set();
+        let stockData = {};
+        let heartbeatInterval = null;
+
+        // 更新当前时间
+        function updateCurrentTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('zh-CN', {
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.querySelectorAll('.timestamp').forEach(el => {
+                el.textContent = `[${timeString}]`;
+            });
+        }
+
+        // 初始化
+        function init() {
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 1000);
+
+            // 从服务器获取连接状态
+            fetch('/api/websocket/status')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('activeConnections').textContent = data.activeSessions || 0;
+                })
+                .catch(error => {
+                    console.error('获取连接状态失败:', error);
+                });
+        }
+
+        // 连接WebSocket
+        function connectWebSocket() {
+            const endpoint = document.getElementById('endpointSelect').value;
+
+            try {
+                if (endpoint.includes('sockjs')) {
+                    // 使用SockJS
+                    const sockjs = new SockJS(endpoint);
+                    websocket = new WebSocket(sockjs);
+                } else {
+                    // 使用原生WebSocket
+                    websocket = new WebSocket(endpoint);
+                }
+
+                // 设置事件处理器
+                websocket.onopen = onWebSocketOpen;
+                websocket.onmessage = onWebSocketMessage;
+                websocket.onerror = onWebSocketError;
+                websocket.onclose = onWebSocketClose;
+
+                updateStatus('连接中...', 'connecting');
+                logMessage('正在连接WebSocket服务器...', 'system');
+            } catch (error) {
+                logMessage('连接失败: ' + error.message, 'error');
+                updateStatus('连接失败', 'disconnected');
+            }
+        }
+
+        // WebSocket连接打开
+        function onWebSocketOpen(event) {
+            isConnected = true;
+            updateStatus('已连接', 'connected');
+            logMessage('WebSocket连接已建立', 'system');
+
+            // 启用按钮
+            document.getElementById('connectBtn').disabled = true;
+            document.getElementById('disconnectBtn').disabled = false;
+            document.getElementById('subscribeBtn').disabled = false;
+            document.getElementById('unsubscribeBtn').disabled = false;
+
+            // 开始心跳检测
+            startHeartbeat();
+        }
+
+        // 接收WebSocket消息
+        function onWebSocketMessage(event) {
+            messageCount++;
+            document.getElementById('messageCount').textContent = messageCount;
+
+            try {
+                const message = JSON.parse(event.data);
+                logMessage(JSON.stringify(message, null, 2), 'received');
+
+                // 处理不同类型的消息
+                handleWebSocketMessage(message);
+            } catch (error) {
+                logMessage('收到消息: ' + event.data, 'received');
+            }
+        }
+
+        // 处理WebSocket消息
+        function handleWebSocketMessage(message) {
+            switch (message.type) {
+                case 'CONNECTED':
+                    logMessage('服务器: ' + message.data, 'system');
+                    break;
+
+                case 'HEARTBEAT':
+                    if (message.data === 'pong') {
+                        logMessage('心跳响应: pong', 'system');
+                    }
+                    break;
+
+                case 'SUBSCRIBE_SUCCESS':
+                    const subData = message.data;
+                    const subKey = `${subData.securityType}:${subData.code}`;
+                    subscriptions.add(subKey);
+                    updateSubscriptionCount();
+                    logMessage(`订阅成功: ${subData.securityType} ${subData.code}`, 'system');
+                    break;
+
+                case 'UNSUBSCRIBE_SUCCESS':
+                    const unsubData = message.data;
+                    const unsubKey = `${unsubData.securityType}:${unsubData.code}`;
+                    subscriptions.delete(unsubKey);
+                    updateSubscriptionCount();
+                    logMessage(`取消订阅成功: ${unsubData.securityType} ${unsubData.code}`, 'system');
+                    break;
+
+                case 'REALTIME_PRICE':
+                    updateStockData(message.data);
+                    break;
+
+                case 'ERROR':
+                    logMessage('错误: ' + message.data, 'error');
+                    break;
+
+                case 'DISCONNECTED':
+                    logMessage('连接断开: ' + message.data, 'system');
+                    break;
+
+                default:
+                    logMessage('未知消息类型: ' + message.type, 'system');
+            }
+        }
+
+        // 更新股票数据
+        function updateStockData(data) {
+            const key = `${data.securityType}:${data.code}`;
+            stockData[key] = {
+                ...data,
+                timestamp: new Date().toLocaleTimeString()
+            };
+
+            renderStockGrid();
+        }
+
+        // 渲染股票网格
+        function renderStockGrid() {
+            const grid = document.getElementById('stockGrid');
+            grid.innerHTML = '';
+
+            Object.values(stockData).forEach(data => {
+                const change = data.change || data.changePercent || 0;
+                const changeClass = change >= 0 ? 'positive' : 'negative';
+                const changeText = change >= 0 ? `+${change}` : change;
+
+                const card = document.createElement('div');
+                card.className = 'stock-card';
+                card.innerHTML = `
+                    <div class="code">${data.code} ${data.name || ''}</div>
+                    <div class="price">${data.price || data.nav || 'N/A'}</div>
+                    <div class="change ${changeClass}">${changeText}%</div>
+                    <div style="font-size: 0.8rem; color: #6c757d; margin-top: 5px;">
+                        ${data.securityType} | ${data.timestamp}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // WebSocket错误
+        function onWebSocketError(event) {
+            logMessage('WebSocket错误', 'error');
+            updateStatus('连接错误', 'error');
+        }
+
+        // WebSocket关闭
+        function onWebSocketClose(event) {
+            isConnected = false;
+            updateStatus('已断开', 'disconnected');
+            logMessage(`WebSocket连接已关闭 (代码: ${event.code}, 原因: ${event.reason || '无'})`, 'system');
+
+            // 禁用按钮
+            document.getElementById('connectBtn').disabled = false;
+            document.getElementById('disconnectBtn').disabled = true;
+            document.getElementById('subscribeBtn').disabled = true;
+            document.getElementById('unsubscribeBtn').disabled = true;
+
+            // 停止心跳
+            stopHeartbeat();
+
+            // 清空订阅
+            subscriptions.clear();
+            updateSubscriptionCount();
+        }
+
+        // 断开WebSocket
+        function disconnectWebSocket() {
+            if (websocket) {
+                websocket.close();
+                websocket = null;
+            }
+        }
+
+        // 订阅证券
+        function subscribe() {
+            if (!isConnected || !websocket) {
+                logMessage('请先连接WebSocket', 'error');
+                return;
+            }
+
+            const securityType = document.getElementById('securityType').value;
+            const code = document.getElementById('securityCode').value.trim();
+
+            if (!code) {
+                logMessage('请输入证券代码', 'error');
+                return;
+            }
+
+            const message = {
+                type: 'SUBSCRIBE',
+                data: {
+                    securityType: securityType,
+                    code: code
+                },
+                timestamp: Date.now()
+            };
+
+            websocket.send(JSON.stringify(message));
+            logMessage('发送订阅请求: ' + JSON.stringify(message.data), 'sent');
+        }
+
+        // 取消订阅
+        function unsubscribe() {
+            if (!isConnected || !websocket) {
+                logMessage('请先连接WebSocket', 'error');
+                return;
+            }
+
+            const securityType = document.getElementById('securityType').value;
+            const code = document.getElementById('securityCode').value.trim();
+
+            if (!code) {
+                logMessage('请输入证券代码', 'error');
+                return;
+            }
+
+            const message = {
+                type: 'UNSUBSCRIBE',
+                data: {
+                    securityType: securityType,
+                    code: code
+                },
+                timestamp: Date.now()
+            };
+
+            websocket.send(JSON.stringify(message));
+            logMessage('发送取消订阅请求: ' + JSON.stringify(message.data), 'sent');
+        }
+
+        // 更新状态
+        function updateStatus(text, status) {
+            const indicator = document.getElementById('statusIndicator');
+            const statusText = document.getElementById('statusText');
+
+            statusText.textContent = text;
+            indicator.className = 'status-indicator';
+
+            if (status === 'connected') {
+                indicator.classList.add('connected');
+            }
+        }
+
+        // 更新订阅数量
+        function updateSubscriptionCount() {
+            document.getElementById('subscriptionCount').textContent = subscriptions.size;
+        }
+
+        // 记录消息
+        function logMessage(text, type = 'system') {
+            const logDiv = document.getElementById('messageLog');
+            const messageDiv = document.createElement('div');
+
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('zh-CN', {
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+
+            messageDiv.className = `message-item ${type}`;
+            messageDiv.innerHTML = `<span class="timestamp">[${timeString}]</span> ${text}`;
+
+            logDiv.appendChild(messageDiv);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        // 清空日志
+        function clearLog() {
+            const logDiv = document.getElementById('messageLog');
+            logDiv.innerHTML = '<div class="message-item system">日志已清空</div>';
+        }
+
+        // 开始心跳检测
+        function startHeartbeat() {
+            heartbeatInterval = setInterval(() => {
+                if (isConnected && websocket) {
+                    const message = {
+                        type: 'HEARTBEAT',
+                        data: 'ping',
+                        timestamp: Date.now()
+                    };
+
+                    websocket.send(JSON.stringify(message));
+                    logMessage('发送心跳: ping', 'sent');
+                }
+            }, 30000); // 30秒一次
+        }
+
+        // 停止心跳检测
+        function stopHeartbeat() {
+            if (heartbeatInterval) {
+                clearInterval(heartbeatInterval);
+                heartbeatInterval = null;
+            }
+        }
+
+        // 测试心跳
+        function testHeartbeat() {
+            if (isConnected && websocket) {
+                const message = {
+                    type: 'HEARTBEAT',
+                    data: 'ping',
+                    timestamp: Date.now()
+                };
+
+                websocket.send(JSON.stringify(message));
+                logMessage('测试心跳: ping', 'sent');
+            } else {
+                logMessage('请先连接WebSocket', 'error');
+            }
+        }
+
+        // 测试手动推送
+        function testManualPush() {
+            const securityType = document.getElementById('securityType').value;
+            const code = document.getElementById('securityCode').value.trim() || '000001';
+
+            fetch(`/api/websocket/push/${securityType}/${code}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    logMessage(`手动推送成功: ${securityType} ${code} (发送到 ${data.sentCount} 个会话)`, 'system');
+                } else {
+                    logMessage(`手动推送失败: ${data.message}`, 'error');
+                }
+            })
+            .catch(error => {
+                logMessage('手动推送请求失败: ' + error.message, 'error');
+            });
+        }
+
+        // 页面加载时初始化
+        window.onload = init;
+    </script>
+
+    <!-- SockJS客户端库 -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+</body>
+</html>
