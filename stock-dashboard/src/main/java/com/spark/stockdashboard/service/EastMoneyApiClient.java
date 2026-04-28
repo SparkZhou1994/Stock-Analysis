@@ -6,6 +6,11 @@ import com.spark.stockdashboard.entity.dashboard.HistoricalDataBO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
@@ -25,6 +30,7 @@ import java.util.*;
  */
 @Component
 @Slf4j
+@CacheConfig(cacheNames = "eastmoney-api")
 public class EastMoneyApiClient {
 
     private final RestTemplate restTemplate;
@@ -36,7 +42,7 @@ public class EastMoneyApiClient {
     @Value("${eastmoney.api.timeout:5000}")
     private int timeout;
 
-    @Value("${eastmoney.api.retry-count:3}")
+    @Value("${eastmoney.api.retry.max-attempts:3}")
     private int retryCount;
 
     public EastMoneyApiClient(RestTemplate restTemplate) {
@@ -48,6 +54,12 @@ public class EastMoneyApiClient {
      * @param stockCode 股票代码（带市场前缀，如：sh600000, sz000001）
      * @return 股票实时数据
      */
+    @Timed(value = "eastmoney.api.request.duration", description = "东方财富API请求耗时",
+            extraTags = {"endpoint", "stock.realtime"})
+    @Counted(value = "eastmoney.api.request.count", description = "东方财富API请求次数",
+            extraTags = {"endpoint", "stock.realtime"})
+    @Cacheable(key = "'stock:realtime:' + #stockCode", unless = "#result == null")
+    @CircuitBreaker(name = "eastmoney-api", fallbackMethod = "fallbackStockRealtimeData")
     @Retryable(
             value = {
                     org.springframework.web.client.ResourceAccessException.class,
@@ -99,6 +111,26 @@ public class EastMoneyApiClient {
      * @param fundCode 基金代码
      * @return 基金实时数据
      */
+    @Timed(value = "eastmoney.api.request.duration", description = "东方财富API请求耗时",
+            extraTags = {"endpoint", "fund.realtime"})
+    @Counted(value = "eastmoney.api.request.count", description = "东方财富API请求次数",
+            extraTags = {"endpoint", "fund.realtime"})
+    @Cacheable(key = "'fund:realtime:' + #fundCode", unless = "#result == null")
+    @CircuitBreaker(name = "eastmoney-api", fallbackMethod = "fallbackFundRealtimeData")
+    @Retryable(
+            value = {
+                    org.springframework.web.client.ResourceAccessException.class,
+                    java.net.SocketTimeoutException.class,
+                    java.net.ConnectException.class,
+                    org.springframework.web.client.HttpServerErrorException.class
+            },
+            maxAttemptsExpression = "${eastmoney.api.retry.max-attempts:3}",
+            backoff = @Backoff(
+                    delayExpression = "${eastmoney.api.retry.backoff-delay:1000}",
+                    multiplierExpression = "${eastmoney.api.retry.backoff-multiplier:2.0}",
+                    maxDelayExpression = "${eastmoney.api.retry.max-backoff-delay:10000}"
+            )
+    )
     public FundDashboardBO fetchFundRealtimeData(String fundCode) {
         try {
             log.debug("开始获取基金实时数据，基金代码：{}", fundCode);
@@ -138,6 +170,26 @@ public class EastMoneyApiClient {
      * @param endDate 结束日期
      * @return 历史数据列表
      */
+    @Timed(value = "eastmoney.api.request.duration", description = "东方财富API请求耗时",
+            extraTags = {"endpoint", "stock.historical"})
+    @Counted(value = "eastmoney.api.request.count", description = "东方财富API请求次数",
+            extraTags = {"endpoint", "stock.historical"})
+    @Cacheable(key = "'stock:historical:' + #stockCode + ':' + #startDate + ':' + #endDate", unless = "#result.isEmpty()")
+    @CircuitBreaker(name = "eastmoney-api", fallbackMethod = "fallbackStockHistoricalData")
+    @Retryable(
+            value = {
+                    org.springframework.web.client.ResourceAccessException.class,
+                    java.net.SocketTimeoutException.class,
+                    java.net.ConnectException.class,
+                    org.springframework.web.client.HttpServerErrorException.class
+            },
+            maxAttemptsExpression = "${eastmoney.api.retry.max-attempts:3}",
+            backoff = @Backoff(
+                    delayExpression = "${eastmoney.api.retry.backoff-delay:1000}",
+                    multiplierExpression = "${eastmoney.api.retry.backoff-multiplier:2.0}",
+                    maxDelayExpression = "${eastmoney.api.retry.max-backoff-delay:10000}"
+            )
+    )
     public List<HistoricalDataBO> fetchStockHistoricalData(String stockCode, LocalDate startDate, LocalDate endDate) {
         try {
             log.debug("开始获取股票历史数据，股票代码：{}，日期范围：{} - {}", stockCode, startDate, endDate);
@@ -177,6 +229,26 @@ public class EastMoneyApiClient {
      * @param endDate 结束日期
      * @return 历史数据列表
      */
+    @Timed(value = "eastmoney.api.request.duration", description = "东方财富API请求耗时",
+            extraTags = {"endpoint", "fund.historical"})
+    @Counted(value = "eastmoney.api.request.count", description = "东方财富API请求次数",
+            extraTags = {"endpoint", "fund.historical"})
+    @Cacheable(key = "'fund:historical:' + #fundCode + ':' + #startDate + ':' + #endDate", unless = "#result.isEmpty()")
+    @CircuitBreaker(name = "eastmoney-api", fallbackMethod = "fallbackFundHistoricalData")
+    @Retryable(
+            value = {
+                    org.springframework.web.client.ResourceAccessException.class,
+                    java.net.SocketTimeoutException.class,
+                    java.net.ConnectException.class,
+                    org.springframework.web.client.HttpServerErrorException.class
+            },
+            maxAttemptsExpression = "${eastmoney.api.retry.max-attempts:3}",
+            backoff = @Backoff(
+                    delayExpression = "${eastmoney.api.retry.backoff-delay:1000}",
+                    multiplierExpression = "${eastmoney.api.retry.backoff-multiplier:2.0}",
+                    maxDelayExpression = "${eastmoney.api.retry.max-backoff-delay:10000}"
+            )
+    )
     public List<HistoricalDataBO> fetchFundHistoricalData(String fundCode, LocalDate startDate, LocalDate endDate) {
         try {
             log.debug("开始获取基金历史数据，基金代码：{}，日期范围：{} - {}", fundCode, startDate, endDate);
@@ -690,6 +762,88 @@ public class EastMoneyApiClient {
     }
 
     /**
+     * 重试失败恢复方法 - 获取股票实时数据
+     */
+    @Recover
+    public StockDashboardBO recoverStockRealtimeData(Exception e, String stockCode) {
+        log.error("获取股票实时数据重试{}次后仍然失败，股票代码：{}，错误：{}",
+                retryCount, stockCode, e.getMessage(), e);
+        return null;
+    }
+
+    /**
+     * 重试失败恢复方法 - 获取基金实时数据
+     */
+    @Recover
+    public FundDashboardBO recoverFundRealtimeData(Exception e, String fundCode) {
+        log.error("获取基金实时数据重试{}次后仍然失败，基金代码：{}，错误：{}",
+                retryCount, fundCode, e.getMessage(), e);
+        return null;
+    }
+
+    /**
+     * 重试失败恢复方法 - 获取股票历史数据
+     */
+    @Recover
+    public List<HistoricalDataBO> recoverStockHistoricalData(Exception e, String stockCode,
+                                                              LocalDate startDate, LocalDate endDate) {
+        log.error("获取股票历史数据重试{}次后仍然失败，股票代码：{}，日期范围：{} - {}，错误：{}",
+                retryCount, stockCode, startDate, endDate, e.getMessage(), e);
+        return Collections.emptyList();
+    }
+
+    /**
+     * 重试失败恢复方法 - 获取基金历史数据
+     */
+    @Recover
+    public List<HistoricalDataBO> recoverFundHistoricalData(Exception e, String fundCode,
+                                                             LocalDate startDate, LocalDate endDate) {
+        log.error("获取基金历史数据重试{}次后仍然失败，基金代码：{}，日期范围：{} - {}，错误：{}",
+                retryCount, fundCode, startDate, endDate, e.getMessage(), e);
+        return Collections.emptyList();
+    }
+
+    /**
+     * 熔断器降级方法 - 获取股票实时数据
+     */
+    public StockDashboardBO fallbackStockRealtimeData(String stockCode, Exception e) {
+        log.warn("熔断器触发，获取股票实时数据降级，股票代码：{}，错误：{}", stockCode, e.getMessage());
+        // 返回空值或者从缓存获取数据
+        return null;
+    }
+
+    /**
+     * 熔断器降级方法 - 获取基金实时数据
+     */
+    public FundDashboardBO fallbackFundRealtimeData(String fundCode, Exception e) {
+        log.warn("熔断器触发，获取基金实时数据降级，基金代码：{}，错误：{}", fundCode, e.getMessage());
+        // 返回空值或者从缓存获取数据
+        return null;
+    }
+
+    /**
+     * 熔断器降级方法 - 获取股票历史数据
+     */
+    public List<HistoricalDataBO> fallbackStockHistoricalData(String stockCode, LocalDate startDate,
+                                                               LocalDate endDate, Exception e) {
+        log.warn("熔断器触发，获取股票历史数据降级，股票代码：{}，日期范围：{} - {}，错误：{}",
+                stockCode, startDate, endDate, e.getMessage());
+        // 返回空列表或者从缓存获取数据
+        return Collections.emptyList();
+    }
+
+    /**
+     * 熔断器降级方法 - 获取基金历史数据
+     */
+    public List<HistoricalDataBO> fallbackFundHistoricalData(String fundCode, LocalDate startDate,
+                                                              LocalDate endDate, Exception e) {
+        log.warn("熔断器触发，获取基金历史数据降级，基金代码：{}，日期范围：{} - {}，错误：{}",
+                fundCode, startDate, endDate, e.getMessage());
+        // 返回空列表或者从缓存获取数据
+        return Collections.emptyList();
+    }
+
+    /**
      * 测试API连接
      * @return 是否连接成功
      */
@@ -716,5 +870,20 @@ public class EastMoneyApiClient {
         status.put("connectionTest", testConnection());
         status.put("timestamp", LocalDateTime.now());
         return status;
+    }
+
+    /**
+     * 获取API运行时指标
+     * @return 指标信息
+     */
+    public Map<String, Object> getApiMetrics() {
+        Map<String, Object> metrics = new HashMap<>();
+        metrics.put("timestamp", LocalDateTime.now());
+        metrics.put("cache.enabled", true);
+        metrics.put("circuit.breaker.enabled", true);
+        metrics.put("retry.enabled", true);
+        metrics.put("metrics.enabled", true);
+        // 更多指标可以通过Micrometer的MeterRegistry获取
+        return metrics;
     }
 }

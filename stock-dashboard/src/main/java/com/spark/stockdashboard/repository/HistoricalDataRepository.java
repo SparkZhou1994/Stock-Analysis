@@ -66,7 +66,7 @@ public interface HistoricalDataRepository extends JpaRepository<HistoricalDataBO
      * @param days 天数
      * @return 历史数据实体列表
      */
-    @Query("SELECT h FROM HistoricalDataBO h WHERE h.code = :code ORDER BY h.tradeDate DESC")
+    @Query(value = "SELECT * FROM historical_data h WHERE h.code = :code ORDER BY h.trade_date DESC LIMIT :days", nativeQuery = true)
     List<HistoricalDataBO> findRecentByCode(@Param("code") String code, @Param("days") int days);
 
     /**

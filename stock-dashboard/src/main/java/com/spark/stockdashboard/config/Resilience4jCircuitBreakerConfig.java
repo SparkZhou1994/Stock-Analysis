@@ -1,7 +1,6 @@
 package com.spark.stockdashboard.config;
 
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
-import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +12,7 @@ import java.time.Duration;
  * 配置Resilience4j熔断器
  */
 @Configuration
-public class CircuitBreakerConfig {
+public class Resilience4jCircuitBreakerConfig {
 
     /**
      * 配置熔断器注册表
@@ -28,7 +27,7 @@ public class CircuitBreakerConfig {
      */
     @Bean
     public CircuitBreaker eastMoneyApiCircuitBreaker(CircuitBreakerRegistry registry) {
-        CircuitBreakerConfig config = CircuitBreakerConfig.custom()
+        io.github.resilience4j.circuitbreaker.CircuitBreakerConfig config = io.github.resilience4j.circuitbreaker.CircuitBreakerConfig.custom()
                 // 失败率阈值，超过50%触发熔断
                 .failureRateThreshold(50)
                 // 慢调用率阈值，超过100%触发熔断
@@ -44,7 +43,7 @@ public class CircuitBreakerConfig {
                 // 滑动窗口大小
                 .slidingWindowSize(100)
                 // 滑动窗口类型
-                .slidingWindowType(CircuitBreakerConfig.SlidingWindowType.COUNT_BASED)
+                .slidingWindowType(io.github.resilience4j.circuitbreaker.CircuitBreakerConfig.SlidingWindowType.COUNT_BASED)
                 // 记录异常
                 .recordExceptions(
                         org.springframework.web.client.ResourceAccessException.class,
@@ -82,73 +81,6 @@ public class CircuitBreakerConfig {
                 metrics.getNumberOfSlowCalls(),
                 metrics.getNumberOfNotPermittedCalls()
         );
-    }
-
-    /**
-     * 熔断器事件监听器
-     */
-    @Bean
-    public CircuitBreaker.EventListener circuitBreakerEventListener() {
-        return new CircuitBreaker.EventListener() {
-            @Override
-            public void onSuccess(CircuitBreaker.OnSuccessEvent event) {
-                // 成功事件
-                System.out.printf("熔断器成功事件 - 名称: %s, 持续时间: %dms%n",
-                        event.getCircuitBreakerName(), event.getElapsedDuration().toMillis());
-            }
-
-            @Override
-            public void onError(CircuitBreaker.OnErrorEvent event) {
-                // 错误事件
-                System.out.printf("熔断器错误事件 - 名称: %s, 异常: %s, 持续时间: %dms%n",
-                        event.getCircuitBreakerName(),
-                        event.getThrowable().getClass().getSimpleName(),
-                        event.getElapsedDuration().toMillis());
-            }
-
-            @Override
-            public void onStateTransition(CircuitBreaker.OnStateTransitionEvent event) {
-                // 状态转换事件
-                System.out.printf("熔断器状态转换 - 名称: %s, 从 %s 转换到 %s%n",
-                        event.getCircuitBreakerName(),
-                        event.getStateTransition().getFromState(),
-                        event.getStateTransition().getToState());
-            }
-
-            @Override
-            public void onReset(CircuitBreaker.OnResetEvent event) {
-                // 重置事件
-                System.out.printf("熔断器重置 - 名称: %s%n", event.getCircuitBreakerName());
-            }
-
-            @Override
-            public void onIgnoredError(CircuitBreaker.OnIgnoredErrorEvent event) {
-                // 忽略错误事件
-                System.out.printf("熔断器忽略错误 - 名称: %s, 异常: %s%n",
-                        event.getCircuitBreakerName(),
-                        event.getThrowable().getClass().getSimpleName());
-            }
-
-            @Override
-            public void onCallNotPermitted(CircuitBreaker.OnCallNotPermittedEvent event) {
-                // 调用不允许事件
-                System.out.printf("熔断器调用不允许 - 名称: %s%n", event.getCircuitBreakerName());
-            }
-
-            @Override
-            public void onSlowCallRateExceeded(CircuitBreaker.OnSlowCallRateExceededEvent event) {
-                // 慢调用率超过阈值事件
-                System.out.printf("熔断器慢调用率超过阈值 - 名称: %s, 慢调用率: %.1f%%%n",
-                        event.getCircuitBreakerName(), event.getSlowCallRate());
-            }
-
-            @Override
-            public void onFailureRateExceeded(CircuitBreaker.OnFailureRateExceededEvent event) {
-                // 失败率超过阈值事件
-                System.out.printf("熔断器失败率超过阈值 - 名称: %s, 失败率: %.1f%%%n",
-                        event.getCircuitBreakerName(), event.getFailureRate());
-            }
-        };
     }
 
     /**

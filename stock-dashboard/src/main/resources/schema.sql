@@ -349,4 +349,4 @@ AND rp.timestamp = (
 -- ============================================
 -- 完成信息
 -- ============================================
-SELECT 'Database schema created successfully!' as message;
+SELECT 'Database schema c表也reated successfully!' as message;

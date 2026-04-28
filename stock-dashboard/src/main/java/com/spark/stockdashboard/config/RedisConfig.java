@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -66,6 +67,7 @@ public class RedisConfig extends CachingConfigurerSupport {
      * 配置不同缓存的过期时间
      */
     @Bean
+    @Primary
     public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
         // 默认缓存配置
         RedisCacheConfiguration defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig()
@@ -120,14 +122,4 @@ public class RedisConfig extends CachingConfigurerSupport {
         return objectMapper;
     }
 
-    /**
-     * 配置Redis连接工厂
-     * 通过application.properties中的spring.redis.*配置
-     */
-    @Bean
-    public RedisConnectionFactory redisConnectionFactory() {
-        // 使用Spring Boot自动配置的Redis连接工厂
-        // 配置在application.properties中
-        return null; // Spring Boot会自动配置
-    }
 }

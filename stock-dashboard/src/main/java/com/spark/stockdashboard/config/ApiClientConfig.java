@@ -77,8 +77,8 @@ public class ApiClientConfig {
     public RestTemplate restTemplate(CloseableHttpClient httpClient) {
         HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
         requestFactory.setHttpClient(httpClient);
-        requestFactory.setConnectTimeout(Timeout.of(connectTimeout, TimeUnit.MILLISECONDS));
-        requestFactory.setConnectionRequestTimeout(Timeout.of(connectionRequestTimeout, TimeUnit.MILLISECONDS));
+        requestFactory.setConnectTimeout(java.time.Duration.ofMillis(connectTimeout));
+        requestFactory.setConnectionRequestTimeout(java.time.Duration.ofMillis(connectionRequestTimeout));
 
         RestTemplate restTemplate = new RestTemplate(requestFactory);
 

@@ -35,7 +35,6 @@ public class SchedulerConfig implements SchedulingConfigurer {
         scheduler.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());  // 拒绝策略
 
         // 配置线程池队列
-        scheduler.setQueueCapacity(100);  // 队列容量
         scheduler.setRemoveOnCancelPolicy(true);  // 取消时移除任务
 
         return scheduler;
