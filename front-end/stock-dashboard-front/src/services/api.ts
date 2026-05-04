@@ -52,7 +52,7 @@ export const stockApi = {
   getStockMA: (code: string, days: number) => api.get<number[]>(`/chart/ma/${code}`, { params: { days } }),
 
   // 搜索股票
-  searchStocks: (keyword: string) => api.get<Stock[]>('/watchlist/search', { params: { keyword, type: 'STOCK' } }),
+  searchStocks: (keyword: string) => api.get<Stock[]>('/watchlist/stocks/search', { params: { keyword } }),
 };
 
 /**
@@ -72,7 +72,7 @@ export const fundApi = {
     }),
 
   // 搜索基金
-  searchFunds: (keyword: string) => api.get<Fund[]>('/watchlist/search', { params: { keyword, type: 'FUND' } }),
+  searchFunds: (keyword: string) => api.get<Fund[]>('/watchlist/funds/search', { params: { keyword } }),
 };
 
 /**
@@ -80,14 +80,33 @@ export const fundApi = {
  */
 export const watchlistApi = {
   // 获取自选列表
-  getWatchlist: () => api.get<(Stock | Fund)[]>('/watchlist'),
+  getWatchlist: async () => {
+    // 同时请求股票和基金自选列表
+    const [stockResponse, fundResponse] = await Promise.all([
+      api.get('/watchlist/stocks'),
+      api.get('/watchlist/funds')
+    ]);
+
+    // 合并结果
+    const stockItems = (stockResponse.data as any[]).map(item => ({ ...item, type: 'STOCK' }));
+    const fundItems = (fundResponse.data as any[]).map(item => ({ ...item, type: 'FUND' }));
+
+    return [...stockItems, ...fundItems];
+  },
 
   // 添加到自选
   addToWatchlist: (item: { code: string; type: 'STOCK' | 'FUND'; name: string }) =>
-    api.post('/watchlist', item),
+    item.type === 'STOCK' ? api.post(`/watchlist/stocks/${item.code}`) : api.post(`/watchlist/funds/${item.code}`),
 
   // 从自选移除
-  removeFromWatchlist: (code: string) => api.delete(`/watchlist/${code}`),
+  removeFromWatchlist: (code: string) => {
+    // 尝试识别是股票还是基金代码
+    if (/^(sh|sz|bj)/i.test(code)) {
+      return api.delete(`/watchlist/stocks/${code}`);
+    } else {
+      return api.delete(`/watchlist/funds/${code}`);
+    }
+  },
 
   // 更新自选排序
   updateWatchlistOrder: (orders: { code: string; order: number }[]) =>

@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d6e3315c-3e8c-4877-8e45-fb41db8c4ec2" name="Changes" comment="阶段提交">
+      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLAUDE.md" beforeDir="false" afterPath="$PROJECT_DIR$/CLAUDE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/superpowers/specs/2026-03-12-eastmoney-api-client-enhancement-design.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/superpowers/specs/2026-03-12-eastmoney-api-client-enhancement-design.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/stock-dashboard.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/stock-dashboard.log.2026-04-19.0.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-api/src/main/java/spark/stock/analysis/entity/FundBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-api/src/main/java/spark/stock/analysis/entity/FundBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-api/src/main/java/spark/stock/analysis/entity/StockBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-api/src/main/java/spark/stock/analysis/entity/StockBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-api/src/main/java/spark/stock/analysis/util/DateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-api/src/main/java/spark/stock/analysis/util/DateUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-api/src/main/java/spark/stock/analysis/util/JsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-api/src/main/java/spark/stock/analysis/util/JsonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-api/src/main/java/spark/stock/analysis/util/RandomUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-api/src/main/java/spark/stock/analysis/util/RandomUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-flink/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-flink/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-flink/src/main/java/spark/stock/analysis/config/rabbitmq/RabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-flink/src/main/java/spark/stock/analysis/config/rabbitmq/RabbitMQConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-flink/src/main/java/spark/stock/analysis/job/BatchJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-flink/src/main/java/spark/stock/analysis/job/BatchJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-flink/src/main/java/spark/stock/analysis/job/BatchJobDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-flink/src/main/java/spark/stock/analysis/job/BatchJobDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-flink/src/main/java/spark/stock/analysis/job/RockdbJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-flink/src/main/java/spark/stock/analysis/job/RockdbJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-flink/src/main/java/spark/stock/analysis/job/StockAnalysisJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-flink/src/main/java/spark/stock/analysis/job/StockAnalysisJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-flink/src/main/java/spark/stock/analysis/job/StreamingJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-flink/src/main/java/spark/stock/analysis/job/StreamingJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-flink/src/main/java/spark/stock/analysis/operate/StockSoldHotAnalyse.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-flink/src/main/java/spark/stock/analysis/operate/StockSoldHotAnalyse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-flink/src/main/java/spark/stock/analysis/sink/RabbitMqStreamSink.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-flink/src/main/java/spark/stock/analysis/sink/RabbitMqStreamSink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-flink/src/main/java/spark/stock/analysis/stream/RabbitMQStreamConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-flink/src/main/java/spark/stock/analysis/stream/RabbitMQStreamConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-flink/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-flink/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/resources/FlinkOperationDocument.txt" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/resources/FlinkOperationDocument.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/AggregateFunctionByWindowJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/AggregateFunctionByWindowJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/BatchJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/BatchJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/CheckPointJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/CheckPointJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/KeyStateJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/KeyStateJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/ProcessFunctionJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/ProcessFunctionJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/ProcessWindowFunctionByWindowJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/ProcessWindowFunctionByWindowJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/ReduceFunctionByWindowJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/ReduceFunctionByWindowJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/SavePointJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/SavePointJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/SideOutputStreamJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/SideOutputStreamJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/StationLog.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/StationLog.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/StreamingJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/StreamingJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/WordCountBatchJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/WordCountBatchJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-learn/src/main/scala/spark/stock/analysis/WordCountStreamJob.scala" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-learn/src/main/scala/spark/stock/analysis/WordCountStreamJob.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/java/spark/stock/analysis/StockAnalysisApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/java/spark/stock/analysis/StockAnalysisApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/java/spark/stock/analysis/config/rabbitmq/RabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/java/spark/stock/analysis/config/rabbitmq/RabbitMQConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/java/spark/stock/analysis/config/schedule/SendMockMessageTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/java/spark/stock/analysis/config/schedule/SendMockMessageTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/java/spark/stock/analysis/config/serializ/JacksonObjectConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/java/spark/stock/analysis/config/serializ/JacksonObjectConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/java/spark/stock/analysis/rabbitmq/SendMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/java/spark/stock/analysis/rabbitmq/SendMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/java/spark/stock/analysis/server/FundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/java/spark/stock/analysis/server/FundService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/java/spark/stock/analysis/server/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/java/spark/stock/analysis/server/StockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/java/spark/stock/analysis/server/impl/FundServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/java/spark/stock/analysis/server/impl/FundServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/java/spark/stock/analysis/server/impl/StockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/java/spark/stock/analysis/server/impl/StockServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/resources/mybatis/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/resources/mybatis/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-analysis-springboot/src/main/resources/mybatis/mybatis-generator-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-analysis-springboot/src/main/resources/mybatis/mybatis-generator-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/.vscode/extensions.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/.vscode/extensions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/public/favicon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/public/favicon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/public/icons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/public/icons.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/assets/hero.png" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/assets/hero.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/assets/vite.svg" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/assets/vite.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/assets/vue.svg" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/assets/vue.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/components/charts/KLineChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/components/charts/KLineChart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/components/dashboard/FundCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/components/dashboard/FundCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/components/dashboard/StockCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/components/dashboard/StockCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/components/layout/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/components/layout/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/services/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/services/websocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/services/websocket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/stores/realtime.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/stores/realtime.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/stores/watchlist.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/stores/watchlist.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/types/stock.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/types/stock.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/utils/format.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/utils/format.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/views/DashboardView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/views/DashboardView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/views/DetailView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/views/DetailView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/views/SearchView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/views/SearchView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/views/SettingsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/views/SettingsView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/src/views/WatchlistView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/src/views/WatchlistView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/tsconfig.app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/tsconfig.node.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/tsconfig.node.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard-front/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/stock-dashboard-front/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/logs/stock-dashboard.log" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/logs/stock-dashboard.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/StockDashboardApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/StockDashboardApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/TestApiMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/TestApiMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/config/ApiClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/config/ApiClientConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/config/AsyncConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/config/AsyncConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/config/CacheConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/config/CacheConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/config/DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/config/DataSourceConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/config/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/config/Resilience4jCircuitBreakerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/config/Resilience4jCircuitBreakerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/config/RetryConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/config/RetryConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/config/SchedulerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/config/SchedulerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/config/WebSocketConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/config/WebSocketHandlerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/config/WebSocketHandlerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/controller/ChartDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/controller/ChartDataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/controller/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/controller/WatchlistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/controller/WatchlistController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/controller/WebSocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/controller/WebSocketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/entity/dashboard/FundDashboardBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/entity/dashboard/FundDashboardBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/entity/dashboard/HistoricalDataBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/entity/dashboard/HistoricalDataBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/entity/dashboard/RealtimePriceBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/entity/dashboard/RealtimePriceBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/entity/dashboard/StockDashboardBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/entity/dashboard/StockDashboardBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/repository/FundDashboardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/repository/FundDashboardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/repository/HistoricalDataRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/repository/HistoricalDataRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/repository/StockDashboardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/repository/StockDashboardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/service/DataSyncService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/service/DataSyncService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/service/EastMoneyApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/service/EastMoneyApiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/service/RealtimeDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/service/RealtimeDataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/service/TechnicalIndicatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/service/TechnicalIndicatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/service/WatchlistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/service/WatchlistService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/service/WebSocketPushService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/service/WebSocketPushService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/websocket/StockWebSocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/websocket/StockWebSocketHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/websocket/WebSocketSessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/websocket/WebSocketSessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/websocket/dto/SubscribeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/websocket/dto/SubscribeRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/java/com/spark/stockdashboard/websocket/dto/WebSocketMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/java/com/spark/stockdashboard/websocket/dto/WebSocketMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/main/resources/static/websocket-test.html" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/main/resources/static/websocket-test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/test/java/com/spark/stockdashboard/StockDashboardApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/test/java/com/spark/stockdashboard/StockDashboardApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/test/java/com/spark/stockdashboard/config/DatabaseConfigTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/test/java/com/spark/stockdashboard/config/DatabaseConfigTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/test/java/com/spark/stockdashboard/entity/EntityValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/test/java/com/spark/stockdashboard/entity/EntityValidationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/test/java/com/spark/stockdashboard/service/EastMoneyApiClientRetryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/test/java/com/spark/stockdashboard/service/EastMoneyApiClientRetryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-dashboard/src/test/java/com/spark/stockdashboard/websocket/WebSocketSessionManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/stock-dashboard/src/test/java/com/spark/stockdashboard/websocket/WebSocketSessionManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-api-simple.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/test-api-simple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-api.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/test-api.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="customMavenHome" value="C:\Program Files\apache-maven-3.9.11" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+        <option name="useMavenConfig" value="false" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="3A0eULGzoVS2Xahynhxox9WXhEH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.StockDashboardApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.StockDashboardApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Spark/IdeaProjects/Stock-Analysis&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.archetype.catalogs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Spark\\IdeaProjects\\Stock-Analysis\\stock-dashboard-front\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Spark\IdeaProjects\Stock-Analysis\doc" />
+      <recent name="C:\Users\Spark\IdeaProjects\Stock-Analysis\front-end" />
+      <recent name="C:\Users\Spark\IdeaProjects\Stock-Analysis\stock-dashboard\src\main\java\com\spark\stockdashboard\repository" />
+      <recent name="C:\Users\Spark\IdeaProjects\Stock-Analysis\stock-dashboard\src\main\java\com\spark\stockdashboard\config" />
+      <recent name="C:\Users\Spark\IdeaProjects\Stock-Analysis\stock-dashboard\src\main\java\com\spark\stockdashboard\controller" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.StockDashboardApplication">
+    <configuration name="StockDashboardApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.spark.stockdashboard.StockDashboardApplication" />
+      <module name="stock-dashboard" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spark.stockdashboard.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="StockAnalysisApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="stock-analysis-springboot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="spark.stock.analysis.StockAnalysisApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StockDashboardApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="stock-dashboard" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.spark.stockdashboard.StockDashboardApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.StockDashboardApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d6e3315c-3e8c-4877-8e45-fb41db8c4ec2" name="Changes" comment="" />
+      <created>1771733930063</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771733930063</updated>
+      <workItem from="1771733932778" duration="1068000" />
+      <workItem from="1771735556750" duration="3121000" />
+      <workItem from="1772019346265" duration="1963000" />
+      <workItem from="1772032282239" duration="2522000" />
+      <workItem from="1772108316739" duration="5216000" />
+      <workItem from="1772330567657" duration="6674000" />
+      <workItem from="1772452396687" duration="1738000" />
+      <workItem from="1772456057652" duration="5280000" />
+      <workItem from="1772538181363" duration="7697000" />
+      <workItem from="1772634278255" duration="5362000" />
+      <workItem from="1772713075620" duration="441000" />
+      <workItem from="1772951032558" duration="1626000" />
+      <workItem from="1773057704432" duration="777000" />
+      <workItem from="1773058906554" duration="11809000" />
+      <workItem from="1773141746585" duration="12774000" />
+      <workItem from="1773226700830" duration="1247000" />
+      <workItem from="1773314769322" duration="9498000" />
+      <workItem from="1776347565430" duration="339000" />
+      <workItem from="1776534967519" duration="2849000" />
+      <workItem from="1776578881113" duration="150000" />
+      <workItem from="1776579113264" duration="5833000" />
+      <workItem from="1776681273948" duration="5856000" />
+      <workItem from="1776744094194" duration="108000" />
+      <workItem from="1777207135099" duration="1366000" />
+      <workItem from="1777209345673" duration="707000" />
+      <workItem from="1777306029908" duration="13000" />
+      <workItem from="1777377281291" duration="14734000" />
+      <workItem from="1777548726095" duration="2323000" />
+      <workItem from="1777564171217" duration="52000" />
+      <workItem from="1777564298726" duration="26000" />
+      <workItem from="1777781172246" duration="1548000" />
+      <workItem from="1777785702826" duration="2196000" />
+      <workItem from="1777811039650" duration="13000" />
+      <workItem from="1777811172905" duration="5377000" />
+    </task>
+    <task id="LOCAL-00001" summary="/init">
+      <option name="closed" value="true" />
+      <created>1772546072241</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1772546072241</updated>
+    </task>
+    <task id="LOCAL-00002" summary="优化">
+      <option name="closed" value="true" />
+      <created>1773067919829</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1773067919829</updated>
+    </task>
+    <task id="LOCAL-00003" summary="阶段提交">
+      <option name="closed" value="true" />
+      <created>1773325039935</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773325039935</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="/init" />
+    <MESSAGE value="优化" />
+    <MESSAGE value="阶段提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="阶段提交" />
+  </component>
+</project>
